@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="musicfy-album" />
+        <module name="musicfy-home" />
+        <module name="musicfy-gateway" />
+        <module name="musicfy-artist" />
+        <module name="musicfy-models" />
+        <module name="musicfy-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="musicfy-album" target="19" />
+      <module name="musicfy-artist" target="19" />
+      <module name="musicfy-gateway" target="19" />
+      <module name="musicfy-home" target="19" />
+      <module name="musicfy-models" target="19" />
+      <module name="musicfy-server" target="19" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="musicfy-album" options="-parameters" />
+      <module name="musicfy-artist" options="-parameters" />
+      <module name="musicfy-gateway" options="-parameters" />
+      <module name="musicfy-home" options="-parameters" />
+      <module name="musicfy-models" options="-parameters" />
+      <module name="musicfy-server" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/musicfy.iml" filepath="$PROJECT_DIR$/musicfy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/musicfy-album/musicfy-album.iml" filepath="$PROJECT_DIR$/musicfy-album/musicfy-album.iml" />
+      <module fileurl="file://$PROJECT_DIR$/musicfy-angular.iml" filepath="$PROJECT_DIR$/musicfy-angular.iml" />
+      <module fileurl="file://$PROJECT_DIR$/musicfy-artist/musicfy-artist.iml" filepath="$PROJECT_DIR$/musicfy-artist/musicfy-artist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/musicfy-gateway/musicfy-gateway.iml" filepath="$PROJECT_DIR$/musicfy-gateway/musicfy-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/musicfy-home/musicfy-home.iml" filepath="$PROJECT_DIR$/musicfy-home/musicfy-home.iml" />
+      <module fileurl="file://$PROJECT_DIR$/musicfy-models/musicfy-models.iml" filepath="$PROJECT_DIR$/musicfy-models/musicfy-models.iml" />
+      <module fileurl="file://$PROJECT_DIR$/musicfy-server/musicfy-server.iml" filepath="$PROJECT_DIR$/musicfy-server/musicfy-server.iml" />
+    </modules>
+  </component>
+</project>

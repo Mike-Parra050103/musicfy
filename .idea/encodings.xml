@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/musicfy-album/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-album/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-artist/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-artist/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-home/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-home/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-models/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-models/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/musicfy-server/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
