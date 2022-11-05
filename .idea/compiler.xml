@@ -11,8 +11,8 @@
         <module name="musicfy-home" />
         <module name="musicfy-gateway" />
         <module name="musicfy-artist" />
-        <module name="musicfy-models" />
         <module name="musicfy-server" />
+        <module name="musicfy-models" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
