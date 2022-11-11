@@ -1,4 +1,5 @@
 package com.mmr.musicfyartist.InterfaceServices;
+import com.mmr.musicfymodels.Model.Album;
 import com.mmr.musicfymodels.Model.Artista;
 
 import java.util.List;
@@ -6,8 +7,8 @@ import java.util.Optional;
 
 public interface InterfaceArtistaServices
 {
-    public List<Artista> listarArtista();
-    public Optional<Artista> listarIdArtista(int id);
-    public int save(Artista artista);
-    public void delete(int id);
+    public Iterable <Artista> findAll();
+    public Optional <Artista> findById(int id);
+    public Artista save(Artista artista);
+    public void deleteById(int id);
 }

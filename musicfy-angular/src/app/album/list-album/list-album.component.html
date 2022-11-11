@@ -1,1 +1,34 @@
-<p>list-album works!</p>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Lista de Artistas</h2>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+        <tr class="text-center">
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Fecha de Salida</th>
+          <th>Duración</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let album of albums" class="text-center">
+          <td>{{album.id_album}}</td>
+          <td>{{album.nombre_album}}</td>
+          <td>{{album.tipo_album}}</td>
+          <td>{{album.fecha_salida}}</td>
+          <td>{{album.duracion}} Minutos</td>
+          <td>
+            <button class="btn btn-warning">Editar</button>
+            <button class="btn btn-danger" style="margin-left: 10px">Eliminar</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

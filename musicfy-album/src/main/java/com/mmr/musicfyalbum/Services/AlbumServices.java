@@ -1,48 +1,40 @@
 package com.mmr.musicfyalbum.Services;
 
-import com.mmr.musicfymodels.Model.Album;
+import java.util.Optional;
+
 import com.mmr.musicfyalbum.InterfaceServices.InterfaceAlbumServices;
 import com.mmr.musicfyalbum.Repository.AlbumRepository;
+import com.mmr.musicfymodels.Model.Album;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AlbumServices implements InterfaceAlbumServices
 {
     @Autowired
-    private AlbumRepository data;
-
+    private AlbumRepository repository;
     @Override
-    public List<Album> listarAlbumes()
+    public Iterable<Album> findAll()
     {
-        return (List<Album>) data.findAll();
+        return repository.findAll();
     }
 
     @Override
-    public Optional<Album> listarIdAlbumes(int id)
+    public Optional<Album> findById(int id)
     {
-        return data.findById(id);
+        return repository.findById(id);
     }
 
     @Override
-    public int save(Album album)
+    public Album save(Album album)
     {
-        int respuesta = 0;
-        Album album1 = data.save(album);
-
-        if (!album1.equals(null))
-        {
-            respuesta = 1;
-        }
-        return respuesta;
+        return repository.save(album);
     }
 
     @Override
-    public void delete(int id)
+    public void deleteById(int id)
     {
-        data.deleteById(id);
+        repository.deleteById(id);
     }
+
 }

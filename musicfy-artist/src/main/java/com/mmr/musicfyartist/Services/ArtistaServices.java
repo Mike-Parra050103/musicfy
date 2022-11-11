@@ -13,36 +13,29 @@ import java.util.Optional;
 public class ArtistaServices implements InterfaceArtistaServices
 {
     @Autowired
-    private ArtistaRepository data;
+    private ArtistaRepository repository;
 
     @Override
-    public List<Artista> listarArtista()
+    public Iterable<Artista> findAll()
     {
-        return (List<Artista>) data.findAll();
+        return repository.findAll();
     }
 
     @Override
-    public Optional<Artista> listarIdArtista(int id)
+    public Optional<Artista> findById(int id)
     {
-        return data.findById(id);
+        return repository.findById(id);
     }
 
     @Override
-    public int save(Artista artista)
+    public Artista save(Artista artista)
     {
-        int respuesta = 0;
-        Artista artista1 = data.save(artista);
-
-        if (!artista1.equals(null))
-        {
-            respuesta = 1;
-        }
-        return respuesta;
+        return repository.save(artista);
     }
 
     @Override
-    public void delete(int id)
+    public void deleteById(int id)
     {
-        data.deleteById(id);
+        repository.deleteById(id);
     }
 }

@@ -15,7 +15,13 @@ export class ListArtistComponent implements OnInit {
 
   ngOnInit(): void
   {
-    this.service.getPersonas().subscribe(data=>(this.artistas=data));
+    this.service.getArtistas().subscribe
+    (
+      ele=>
+      {
+        this.artistas=ele;
+        console.log(this.artistas);
+      }
+    )
   }
-
 }

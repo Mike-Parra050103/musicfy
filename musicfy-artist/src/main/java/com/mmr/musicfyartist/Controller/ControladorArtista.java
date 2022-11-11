@@ -1,56 +1,73 @@
 package com.mmr.musicfyartist.Controller;
 
-import com.mmr.musicfyartist.Services.ArtistaServices;
-import com.mmr.musicfymodels.Model.Artista;
-import com.mmr.musicfyartist.InterfaceServices.InterfaceArtistaServices;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+import com.mmr.musicfyartist.Services.ArtistaServices;
+import com.mmr.musicfymodels.Model.Artista;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
 @RestController
-@RequestMapping({"/artist"})
 public class ControladorArtista
 {
     @Autowired
-    private ArtistaServices artistaService;
+    private ArtistaServices service;
 
-    @GetMapping("/listarArtista")
-    public List<Artista> listarArtista()
+    @GetMapping("/artist")
+    public ResponseEntity<?> listar()
     {
-        return (List<Artista>) artistaService.listarArtista();
+        return ResponseEntity.ok().body(service.findAll());
     }
 
-    @GetMapping("/nuevoArtista")
-    public String agregarArtista(Model model)
+    @GetMapping("/artist/{id}")
+    public ResponseEntity <?> ver(@PathVariable int id)
     {
-        model.addAttribute("artista", new Artista());
-        return "artistaForm";
+        Optional <Artista> o=service.findById(id);
+
+        if(o.isEmpty())
+        {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(o.get());
     }
 
-    @PostMapping("/guardarArtista")
-    public String guardarArtista(@Valid Artista artista, Model model)
+    @PostMapping("/artist")
+    public Artista guardar(@RequestBody Artista artista)
     {
-        artistaService.save(artista);
-        return "redirect:/listarArtista";
+        return service.save(artista);
     }
 
-    @GetMapping("/editarArtista/{id_artista}")
-    public String editarArtista(@PathVariable int id_artista, Model model)
+    @PutMapping("/artist/{id}")
+    public ResponseEntity <?> editar(@RequestBody Artista artista, @PathVariable int id)
     {
-        Optional<Artista> artista = artistaService.listarIdArtista(id_artista);
-        model.addAttribute("artista", artista);
-        return "artistaForm";
+        Optional <Artista> o=service.findById(id);
+
+        if(o.isEmpty())
+        {
+            return ResponseEntity.notFound().build();
+        }
+
+        Artista artistaBaseDatos = o.get();
+
+        artistaBaseDatos.setId_artista(artista.getId_artista());
+        artistaBaseDatos.setNombre_artista(artista.getNombre_artista());
+        artistaBaseDatos.setTipo_artista(artista.getTipo_artista());
+        artistaBaseDatos.setGenerosArtistas(artista.getGenerosArtistas());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(artistaBaseDatos));
     }
 
-    @GetMapping("/eliminarArtista/{id_artista}")
-    public String eliminarArtista(Model model, @PathVariable int id_artista)
+
+    @DeleteMapping("/artist/{id}")
+    public ResponseEntity <?> eliminar(@PathVariable int id)
     {
-        artistaService.delete(id_artista);
-        return "redirect:/listarArtista";
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
+
 }

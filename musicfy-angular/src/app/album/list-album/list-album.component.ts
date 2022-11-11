@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {Artista} from "../../Model/Artista";
+import {ArtistServiceService} from "../../artist/artist-service.service";
+import {Router} from "@angular/router";
+import {Album} from "../../Model/Album";
+import {AlbumServiceService} from "../album-service.service";
 
 @Component({
   selector: 'app-list-album',
@@ -7,9 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListAlbumComponent implements OnInit {
 
-  constructor() { }
+  albums:Album[];
+  constructor(private service:AlbumServiceService, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
+    this.service.getAlbums().subscribe
+    (
+      ele=>
+      {
+        this.albums=ele;
+        console.log(this.albums);
+      }
+    )
   }
+
 
 }

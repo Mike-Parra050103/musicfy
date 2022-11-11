@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {ArtistServiceService} from "../artist-service.service";
+import {Artista} from "../../Model/Artista";
 
 @Component({
   selector: 'app-add-artist',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddArtistComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router, private service: ArtistServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
   }
 
+  guardarArtistas(artista: Artista)
+  {
+    this.service.setArtistas(artista).subscribe
+    (
+      ele=>
+      {
+        alert("Se agregó el artista con éxito");
+        this.router.navigate((["listArtist"]));
+      }
+    )
+  }
 }

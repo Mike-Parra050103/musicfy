@@ -1,6 +1,6 @@
 export class Artista
 {
-  idArtista: number;
-  nombreArtista: String;
-  tipo_Artista: number;
+  id_artista: number;
+  nombre_artista: String;
+  tipo_artista: number;
 }

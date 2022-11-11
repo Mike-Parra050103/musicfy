@@ -9,10 +9,15 @@ export class ArtistServiceService
 {
   constructor(private http:HttpClient) { };
 
-  Url = 'http://localhost:8991/musicfy-artist/artist';
+  Url = 'http://localhost:8991/artist/artist';
 
-  getPersonas()
+  getArtistas()
   {
     return this.http.get<Artista[]>(this.Url);
+  }
+
+  setArtistas(artista:Artista)
+  {
+    return this.http.post<Artista[]>(this.Url, artista);
   }
 }

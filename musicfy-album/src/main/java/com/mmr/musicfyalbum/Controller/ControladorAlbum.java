@@ -1,59 +1,78 @@
 package com.mmr.musicfyalbum.Controller;
 
+import java.util.Optional;
+
+import com.mmr.musicfyalbum.Services.AlbumServices;
 import com.mmr.musicfymodels.Model.Album;
-import com.mmr.musicfyalbum.InterfaceServices.InterfaceAlbumServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ControladorAlbum
 {
     @Autowired
-    private InterfaceAlbumServices albumService;
+    private AlbumServices service;
 
-    @GetMapping("/listarAlbum")
-    public String listarAlbum(Model model)
+    @GetMapping("/album")
+    public ResponseEntity<?> listar()
     {
-        List<Album> album = albumService.listarAlbumes();
-        model.addAttribute("album", album);
-        return "albumPagina";
-
+        return ResponseEntity.ok().body(service.findAll());
     }
 
-    @GetMapping("/nuevoAlbum")
-    public String agregarArtista(Model model)
+    @GetMapping("/album/{id}")
+    public ResponseEntity <?> ver(@PathVariable int id)
     {
-        model.addAttribute("album", new Album());
-        return "albumForm";
+        Optional <Album> o=service.findById(id);
+        if(o.isEmpty())
+        {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(o.get());
     }
 
-    @PostMapping("/guardarAlbum")
-    public String guardarAlbum(@Valid Album album, Model model)
+    @PostMapping("/album")
+    public ResponseEntity <?> guardar(@RequestBody Album album)
     {
-        albumService.save(album);
-        return "redirect:/listarAlbum";
+        Album albumBaseDatos = service.save(album);
+        return ResponseEntity.status(HttpStatus.CREATED).body(albumBaseDatos);
     }
 
-    @GetMapping("/editarAlbum/{id_album}")
-    public String editarAlbum(@PathVariable int id_album, Model model)
+    @PutMapping("/album/{id}")
+    public ResponseEntity <?> editar(@RequestBody Album album, @PathVariable int id)
     {
-        Optional<Album> album = albumService.listarIdAlbumes(id_album);
-        model.addAttribute("album", album);
-        return "albumForm";
+        Optional <Album> o=service.findById(id);
+
+        if(o.isEmpty())
+        {
+            return ResponseEntity.notFound().build();
+        }
+
+        Album albumBaseDatos = o.get();
+
+        albumBaseDatos.setId_album(album.getId_album());
+        albumBaseDatos.setNombre_album(album.getNombre_album());
+        albumBaseDatos.setTipo_album(album.getTipo_album());
+        albumBaseDatos.setGenerosAlbumes(album.getGenerosAlbumes());
+        albumBaseDatos.setDuracion(album.getDuracion());
+        albumBaseDatos.setFecha_salida(album.getFecha_salida());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(albumBaseDatos));
     }
 
-    @GetMapping("/eliminarAlbum/{id_album}")
-    public String eliminarAlbum(Model model, @PathVariable int id_album)
+
+    @DeleteMapping("/album/{id}")
+    public ResponseEntity <?> eliminar(@PathVariable int id)
     {
-        albumService.delete(id_album);
-        return "redirect:/listarAlbum";
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
+
 }
