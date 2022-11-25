@@ -32,9 +32,17 @@ public class AlbumServices implements InterfaceAlbumServices
     }
 
     @Override
-    public void deleteById(int id)
+    public Optional<Album> deleteById(int id)
     {
-        repository.deleteById(id);
+        return Optional.empty();
     }
 
-}
+    /*
+    @Override
+    public Optional<Album> deleteById(int id)
+    {
+
+    }
+    */
+ }
+

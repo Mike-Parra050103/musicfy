@@ -8,15 +8,15 @@
 
         <div class="form-group">
           <label for="">Nombre:</label>
-          <input type="text" class="form-control">
+          <input #nombre type="text" class="form-control">
         </div>
 
         <div class="form-group">
           <label for="">Tipo:</label>
-          <input type="text" class="form-control">
+          <input #tipo type="text" class="form-control">
         </div>
 
-        <button (click)="guardarArtistas()" class="btn btn-danger" style="margin-top: 10px">Guardar</button>
+        <button (click)="guardarArtistas(nombre.value, tipo.value)" class="btn btn-danger" style="margin-top: 10px">Guardar</button>
 
       </form>
     </div>

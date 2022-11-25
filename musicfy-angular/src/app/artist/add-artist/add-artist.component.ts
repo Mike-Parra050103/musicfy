@@ -8,17 +8,23 @@ import {Artista} from "../../Model/Artista";
   templateUrl: './add-artist.component.html',
   styleUrls: ['./add-artist.component.css']
 })
-export class AddArtistComponent implements OnInit {
+export class AddArtistComponent implements OnInit
+{
 
   constructor(private router:Router, private service: ArtistServiceService) { }
+
+  artista: Artista = new Artista();
 
   ngOnInit(): void
   {
   }
 
-  guardarArtistas(artista: Artista)
+  guardarArtistas(nombre: string, tipo: string)
   {
-    this.service.setArtistas(artista).subscribe
+    this.artista.nombre_artista=nombre;
+    this.artista.tipo_artista= Number(tipo) ;
+
+    this.service.setArtistas(this.artista).subscribe
     (
       ele=>
       {

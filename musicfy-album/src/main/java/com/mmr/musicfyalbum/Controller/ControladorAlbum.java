@@ -28,14 +28,9 @@ public class ControladorAlbum
     }
 
     @GetMapping("/album/{id}")
-    public ResponseEntity <?> ver(@PathVariable int id)
+    public Optional<Album> ver(@PathVariable int id)
     {
-        Optional <Album> o=service.findById(id);
-        if(o.isEmpty())
-        {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(o.get());
+        return service.findById(id);
     }
 
     @PostMapping("/album")
@@ -69,10 +64,9 @@ public class ControladorAlbum
 
 
     @DeleteMapping("/album/{id}")
-    public ResponseEntity <?> eliminar(@PathVariable int id)
+    public Optional<Album> eliminar(@PathVariable int id)
     {
-        service.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return service.deleteById(id);
     }
 
 }

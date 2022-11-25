@@ -28,4 +28,23 @@ export class ListAlbumComponent implements OnInit {
   }
 
 
+  editarAlbum(album: Album)
+  {
+    localStorage.setItem("id", album.id_album.toString());
+    this.router.navigate(["editAlbum"]);
+  }
+
+  eliminarAlbum(album: Album)
+  {
+    this.service.deleteAlbum(album)
+      .subscribe
+      (
+        data =>
+        {
+          this.albums = this.albums.filter(p => p! == album);
+          alert("Album Eliminado");
+          this.router.navigate(["listAlbum"]);
+        }
+      )
+  }
 }

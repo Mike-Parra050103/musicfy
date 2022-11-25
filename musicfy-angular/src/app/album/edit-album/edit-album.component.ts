@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Album} from "../../Model/Album";
+import {Router} from "@angular/router";
+import {AlbumServiceService} from "../album-service.service";
 
 @Component({
   selector: 'app-edit-album',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditAlbumComponent implements OnInit {
 
-  constructor() { }
+  album: Album = new Album();
+  constructor(private router: Router, private service: AlbumServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
+    this.editarAlbum();
   }
 
+  editarAlbum()
+  {
+    let id = localStorage.getItem("id");
+    // @ts-ignore
+    this.service.getAlbumByID(+id)
+      .subscribe
+      (
+        data =>
+        {
+          this.album = data;
+        }
+      )
+  }
 }

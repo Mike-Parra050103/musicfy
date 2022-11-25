@@ -16,4 +16,24 @@ export class AlbumServiceService
   {
     return this.http.get<Album[]>(this.Url);
   }
+
+  setAlbum(album: Album)
+  {
+    return this.http.post<Album[]>(this.Url, album);
+  }
+
+  getAlbumByID(id: number)
+  {
+    return this.http.get<Album>(this.Url + "/" + id);
+  }
+
+  updateAlbum(album: Album)
+  {
+    return this.http.put<Album>(this.Url + "/" + album.id_album, album);
+  }
+
+  deleteAlbum(albun: Album)
+  {
+    return this.http.delete<Album>(this.Url + "/" + albun.id_album);
+  }
 }

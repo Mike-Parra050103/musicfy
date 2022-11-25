@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card">
     <div class="card-header">
-      <h2>Lista de Artistas</h2>
+      <h2>Lista de Albums</h2>
     </div>
     <div class="card-body">
       <table class="table table-hover">
@@ -23,8 +23,8 @@
           <td>{{album.fecha_salida}}</td>
           <td>{{album.duracion}} Minutos</td>
           <td>
-            <button class="btn btn-warning">Editar</button>
-            <button class="btn btn-danger" style="margin-left: 10px">Eliminar</button>
+            <button (click)="editarAlbum(album)" class="btn btn-warning">Editar</button>
+            <button (click)="eliminarAlbum(album)" class="btn btn-danger" style="margin-left: 10px">Eliminar</button>
           </td>
         </tr>
         </tbody>
